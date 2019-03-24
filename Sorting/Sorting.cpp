@@ -3,14 +3,17 @@
 #include<ctime>//for using time()
 #include<algorithm>//for using min_element and max_element
 using namespace std;
-print_array(int *data,int size){
+
+//prints the array
+void print_array(int *data,int size){
     for(int i=0;i<size;i++)
     {
         cout<<data[i]<<" ";
     }
 }
 
-int* get_random_data(int size)//generate random array of integer
+//generate random array of integer
+int* get_random_data(int size)
 {
     int* array = new int[size];
     srand(time(NULL));
@@ -21,16 +24,15 @@ int* get_random_data(int size)//generate random array of integer
     return array;
 }
 
-Bubble_sort(int* data,int size)//in one iteration place the larger element at last in second iteration place the second element at the second last...........
+void Bubble_sort(int* data,int size)//in one iteration place the larger element at last in second iteration place the second element at the second last...........
 {
     for(int i=1;i<size;i++)
         for(int j=0;j<size-i;j++)
             if(data[j]>data[j+1])
                 swap(data[j],data[j+1]);
-                    //data[j]=data[j]+data[j+1]-(data[j+1]=data[j]);
 }
 
-Modified_Bubble_sort(int* data,int size)//If Do not swap then flag becomes 1 and saves other iteration of bubble short.
+void Modified_Bubble_sort(int* data,int size)//If Do not swap then flag becomes 1 and saves other iteration of bubble short.
 {
     for(int i=1,sorted;  i<size;  i++)
     {
@@ -39,13 +41,12 @@ Modified_Bubble_sort(int* data,int size)//If Do not swap then flag becomes 1 and
         for(int j=0;j<size-i;j++)
             if(data[j]>data[j+1])
                 swap(data[j],data[j+1]),sorted=0;
-                    //data[j]=data[j]+data[j+1]-(data[j+1]=data[j]),sorted=0;
 
         if(sorted==1) break;
     }
 }
 
-find_min(int* data,int size,int min)//returns index of array where minimum data is stored from index i
+int find_min(int* data,int size,int min)//returns index of array where minimum data is stored from index i
 {
     for(int j=min+1;j<size;j++)
             if(data[min]>data[j])
@@ -53,7 +54,7 @@ find_min(int* data,int size,int min)//returns index of array where minimum data 
     return min;
 }
 
-Selection_sort(int* data,int size)//Find minimum and swap with first elements find min from second element and swap with the second element......
+void Selection_sort(int* data,int size)//Find minimum and swap with first elements find min from second element and swap with the second element......
 {
     int min;
     for(int i=0;i<size-1;i++)
@@ -68,7 +69,7 @@ Selection_sort(int* data,int size)//Find minimum and swap with first elements fi
     }
 }
 
-Insertion_sort(int* data,int size)//Arrange data one by one where data supposed to be two side sorted array
+void Insertion_sort(int* data,int size)//Arrange data one by one where data supposed to be two side sorted array
 {
     int temp,j;
     for(int i=1;i<size;i++)
@@ -82,7 +83,7 @@ Insertion_sort(int* data,int size)//Arrange data one by one where data supposed 
     }
 }
 
-Quick_sort(int* data,int left , int right)//Divide array by placing  all ascending at the right and descending at left recursively.
+void Quick_sort(int* data,int left , int right)//Divide array by placing  all ascending at the right and descending at left recursively.
 {
     int l = left;
     int r = right - 1;
@@ -109,25 +110,24 @@ Quick_sort(int* data,int left , int right)//Divide array by placing  all ascendi
 }
 
 //Just for fun it's actually a selction sort just trying to write in online.
-My_Sort(int* array,int size){
-//    for(int i = 0 ; i < size ; i++)
-//        std::swap(*std::min_element(array+i,array+size),array[i]);
+void My_Sort(int* array,int size){
     for(int i = size-1 ; i >= 0 ; i--)
           std::swap(*std::max_element(array,array+i+1),*(array+i));//using *(array+i+1) in max element parameter because range is : [first,last).
+//    for(int i = 0 ; i < size ; i++)
+//        std::swap(*std::min_element(array+i,array+size),array[i]);
 }
 
-main()
+int main()
 {
-//    int size; cout<<"Enter Total Number OF Elements : "; cin>>size;
-//    int data[size]; cout<<"Enter Elements : "; for(int i=0;i<size;i++) cin>>data[i];
-int size=10;
-int *data = get_random_data(size);cout<<"Unsorted Data : ";print_array(data,size);
-//      Bubble_sort(data,size);
-//      Modified_Bubble_sort(data,size);
-//      Selection_sort(data,size);
-//      Insertion_sort(data,size);
-//      Quick_sort(data,0,size);
-        My_Sort(data,size);
-cout<<"\n\nSorted Data : ";print_array(data,size);
-delete[] data;
+    int size=10;
+    int *data = get_random_data(size);cout<<"Unsorted Data : ";print_array(data,size);
+    //      Bubble_sort(data,size);
+    //      Modified_Bubble_sort(data,size);
+    //      Selection_sort(data,size);
+    //      Insertion_sort(data,size);
+    //      My_Sort(data,size);
+          Quick_sort(data,0,size);
+    cout<<"\n\nSorted Data : ";print_array(data,size);
+    delete[] data;
+    return 0;
 }
