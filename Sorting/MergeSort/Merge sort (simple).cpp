@@ -1,7 +1,9 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+
 using namespace std;
+
 int* get_random_data(int size)//Generate random array of integer
 {
     int* data = new int[size];
@@ -11,13 +13,14 @@ int* get_random_data(int size)//Generate random array of integer
         data[i]=100*rand()/RAND_MAX;
    return data;
 }
-print_array(int* array , int size )
+
+void print_array(int* array , int size )
 {
     for(int i=0;i<size;i++)
         cout<<array[i]<<" ";
 }
 
-merge(int* array,int left , int mid , int right)
+void merge(int* array,int left , int mid , int right)
 {
 int i,j,k;
 int n1=mid-left+1;
@@ -55,7 +58,7 @@ i=0;j=0;k=left;
     }
 }
 
-merge_sort(int* array,int left,int right)
+void merge_sort(int* array,int left,int right)
 {
     if(left<right)
     {
@@ -67,16 +70,17 @@ merge_sort(int* array,int left,int right)
     }
 }
 
-main()
+int main()
 {
-int* data,size=10;
-data=get_random_data(size);
-cout<<"Unsorted Data : ";
+    int* data,size=10;
+    data=get_random_data(size);
+    cout<<"Unsorted Data : ";
 
-print_array(data,size);
+    print_array(data,size);
 
-merge_sort(data,0,size-1);
+    merge_sort(data,0,size-1);
 
-cout<<"\n  Sorted Data : ";
-print_array(data,size);
+    cout<<"\n  Sorted Data : ";
+    print_array(data,size);
+return 0;
 }
