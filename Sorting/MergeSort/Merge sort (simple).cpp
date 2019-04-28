@@ -25,7 +25,7 @@ void merge(int* array,int left , int mid , int right)
 int i,j,k;
 int n1=mid-left+1;
 int n2=right-mid;
-int l_array[n1] , r_array[n2];
+int *l_array = new int[n1], *r_array = new int[n2];
 
 for(i=0 ; i<n1 ; i++)
     l_array[i] = array[left + i];
@@ -82,5 +82,6 @@ int main()
 
     cout<<"\n  Sorted Data : ";
     print_array(data,size);
+    std::cin.get();
 return 0;
 }
