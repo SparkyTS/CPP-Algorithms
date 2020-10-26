@@ -109,7 +109,7 @@ void Quick_sort(int* data,int left , int right)//Divide array by placing  all as
     }
 }
 
-//Just for fun it's actually a selction sort just trying to write in online.
+//Just for fun it's actually a selction sort just trying to write in one line.
 void My_Sort(int* array,int size){
     for(int i = size-1 ; i >= 0 ; i--)
           std::swap(*std::max_element(array,array+i+1),*(array+i));//using *(array+i+1) in max element parameter because range is : [first,last).
